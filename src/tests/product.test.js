@@ -14,7 +14,7 @@ test("do add product button exists", () => {
   expect(element).toHaveTextContent("Send product proposal");
 });
 
-test("on button click modal should open", () => {
+test("simulate modal open & close", () => {
   render(<ShopApp />);
   const proposalButton = screen.getByTestId("add-product-proposal");
 
@@ -42,4 +42,31 @@ test("on button click modal should open", () => {
   //modal is closed now, this text should not exist on the screen
   beforeClickedSendProposal = screen.queryByTestId("add-product-button-text");
   expect(beforeClickedSendProposal).toBeNull();
+});
+
+test("add product from modal", async () => {
+  render(<ShopApp />);
+
+  //open modal
+  const proposalButton = screen.getByTestId("add-product-proposal");
+  userEvent.click(proposalButton);
+
+  const totalCount0 = screen.queryByTestId("total-products-count");
+  console.log(totalCount0);
+
+  //fill the modal with test input
+  const title = screen.queryByTestId("product-title");
+  userEvent.type(title, "My Product Title");
+  const price = screen.queryByTestId("product-price");
+  userEvent.type(price, "20");
+  const description = screen.queryByTestId("product-description");
+  userEvent.type(description, "this is the product description");
+
+  //add product button
+  const addProductBtn = screen.queryByTestId("add-product-button-text");
+  userEvent.click(addProductBtn);
+
+  //modal is closed as product is added
+  const afterProductAdded = screen.queryByTestId("add-product-modal");
+  expect(afterProductAdded).toBeNull();
 });

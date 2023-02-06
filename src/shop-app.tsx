@@ -135,7 +135,7 @@ export class ShopApp extends React.Component<
           </div>
 
           <div className={styles.statsContainer}>
-            <span>Total products: {this.state.prodCount}</span>
+            <span data-testid="total-products-count">Total products: {this.state.prodCount}</span>
             {' - '}
             <span>Number of favorites: {this.state.numFavorites}</span>
           </div>
@@ -145,6 +145,7 @@ export class ShopApp extends React.Component<
 
         <>
            <Modal
+              data-testid="add-product-modal"
               ariaHideApp={false}
               isOpen={isOpen}
               className={styles.reactModalContent}

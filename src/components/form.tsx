@@ -64,7 +64,7 @@ export const Form: React.FC<IFormProps> = (props) => {
         className={styles.textarea}
       />
 
-      <Button><text>Add a product</text></Button>
+      <Button><div data-testid="add-product-button-text">Add a product</div></Button>
     </form>
   );
 };

@@ -138,7 +138,9 @@ export class ShopApp extends React.Component<
                         isOpen: true,
                      });
                   }.bind(this)}
-               >Send product proposal</Button>
+               >
+                <text>Send product proposal</text>
+               </Button>
             </span>
              {this.state.isShowingMessage && <div className={styles.messageContainer}>
                 <i>{this.state.message}</i>

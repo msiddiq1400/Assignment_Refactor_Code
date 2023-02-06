@@ -28,6 +28,7 @@ export const Product: React.FC<{
 }> = ({ product, onFav }) => {
   const {product: productClass, productBody, actionBarItem, actionBarItemLabel} = styles
   // Problem: Now product title can be too long, I just put overflowX as fix now
+  //we can take the title to the next line but it depends on the requirements given, or figma layout, so not sure if it is a problem.
   return (
     <span className={productClass} style={{display: 'inline-block', overflowX: 'scroll', float: 'none', clear: 'both'}}>
       <span className={styles['product-title']} style={{overflowX: 'hidden'}}>{product.title}</span>

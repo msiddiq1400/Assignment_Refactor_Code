@@ -1,6 +1,7 @@
 import * as React from "react";
 import { Button } from "./button";
 import styles from "./form.module.css";
+import { FormEvent } from "react";
 
 type IFormProps = {
   "on-submit": (payload: { title: string; description: string; price: string }) => void;
@@ -12,7 +13,7 @@ export const Form: React.FC<IFormProps> = (props) => {
   let priceRef = React.useRef<HTMLInputElement>(null);
   let descriptionRef = React.useRef<HTMLTextAreaElement>(null);
 
-  const handleSubmit = (e: any) => {
+  const handleSubmit = (e: FormEvent) => {
     e.preventDefault();
 
     if (!titleRef.current?.value) {
@@ -63,7 +64,7 @@ export const Form: React.FC<IFormProps> = (props) => {
         className={styles.textarea}
       />
 
-      <Button>Add a product</Button>
+      <Button><text>Add a product</text></Button>
     </form>
   );
 };

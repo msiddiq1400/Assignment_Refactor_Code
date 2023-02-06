@@ -1,8 +1,9 @@
 import * as React from "react";
 import styles from "./button.module.css";
+import { ReactElement } from "react";
 
 interface props {
-  children: any;
+  children: ReactElement;
   onClick?: () => void;
 }
 

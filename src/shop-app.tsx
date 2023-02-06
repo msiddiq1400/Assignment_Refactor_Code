@@ -20,6 +20,7 @@ export class ShopApp extends React.Component<
     //we would use redux or flux for managing our state instead of declaring a state object inside our app
     this.state = { products: [], isOpen: false, isShowingMessage: false, message: '', numFavorites: 0, prodCount: 0 };
 
+    //instead of using fetch we can extract all the logic into a seperate api file, moreover we can use axios with it
       try {
         fetch('https://fakestoreapi.com/products').then((response) => {
             let jsonResponse = response.json();

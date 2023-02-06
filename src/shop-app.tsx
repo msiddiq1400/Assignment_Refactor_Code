@@ -6,6 +6,7 @@ import styles from "./shopApp.module.css";
 import { HeaderComponent } from "./components/header-component";
 import { AddProductModalComponent } from "./components/add-product-modal.component";
 
+//TODO - usually i would prefer to use functional component, as the code is more readable and easily understandable
 export class ShopApp extends React.Component<
   {},
   { products: any[]; isOpen: boolean; isShowingMessage: boolean; message: string; numFavorites: number; prodCount: number }
@@ -19,27 +20,27 @@ export class ShopApp extends React.Component<
     //we would use redux or flux for managing our state instead of declaring a state object inside our app
     this.state = { products: [], isOpen: false, isShowingMessage: false, message: '', numFavorites: 0, prodCount: 0 };
 
-    fetch('https://fakestoreapi.com/products').then((response) => {
       try {
-        let jsonResponse = response.json();
-        jsonResponse.then((rawData) => {
-          let data = [];
+        fetch('https://fakestoreapi.com/products').then((response) => {
+            let jsonResponse = response.json();
+            jsonResponse.then((rawData) => {
+              let data = [];
 
-          for (let i = 0; i < rawData.length; i++) {
-            let updatedProd = rawData[i];
-            data.push(updatedProd);
-          }
-          this.setState({
-            products: data,
+              for (let i = 0; i < rawData.length; i++) {
+                let updatedProd = rawData[i];
+                data.push(updatedProd);
+              }
+              this.setState({
+                products: data,
+              });
+              this.setState({
+                prodCount: data.length
+              })
+            });
           });
-          this.setState({
-            prodCount: data.length
-          })
-        });
-      } catch (err) {
-        alert("some error occured")
+        } catch (err) {
+          alert("some error occured")
       }
-    });
   }
 
    componentDidMount(){
@@ -118,6 +119,7 @@ export class ShopApp extends React.Component<
     return (
       <>
         <HeaderComponent />
+        {/* can even move the below component into a seperate - TODO */}
         <div className={['container', styles.main].join(' ')} style={{paddingTop: 0}}>
           <div className={styles.buttonWrapper}>
             <span role="button">
@@ -140,10 +142,7 @@ export class ShopApp extends React.Component<
 
           {products && !!products.length ? <ProductList products={products} onFav={this.favClick} /> : <div></div>}
         </div>
-
-        <>
-           <AddProductModalComponent isOpen={isOpen} setModalClose={() => this.setState({isOpen: false})} onSubmit={this.onSubmit}/>
-        </>
+        <AddProductModalComponent isOpen={isOpen} setModalClose={() => this.setState({isOpen: false})} onSubmit={this.onSubmit}/>
       </>
     );
   }

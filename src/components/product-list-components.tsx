@@ -1,7 +1,8 @@
 import * as React from "react";
 import lodash from 'lodash'
-import { FaStar } from "react-icons/fa";
 import styles from "./product-list-components.module.css";
+import { IProduct } from "../common/common";
+import { AddToFavoriteComponent } from "./add-to-favorite-component";
 
 interface IPostsProps {
   products: any;
@@ -23,10 +24,10 @@ export default class Posts extends React.Component<IPostsProps, {}> {
 
 export const Product: React.FC<{
   index: number;
-  product: { title: string; description: string; price: number; isFavorite: boolean; rating: {rate: number; count: number} };
+  product: IProduct;
   onFav: (title: string) => void;
 }> = ({ product, onFav }) => {
-  const {product: productClass, productBody, actionBarItem, actionBarItemLabel} = styles
+  const {product: productClass, productBody} = styles
   // Problem: Now product title can be too long, I just put overflowX as fix now
   //we can take the title to the next line but it depends on the requirements given, or figma layout, so not sure if it is a problem.
   return (
@@ -42,20 +43,7 @@ export const Product: React.FC<{
         <br/>
         {product.description}
      </p>
-
-      <span className={styles['action_bar']} style={{display: 'table', width: "100%"}}>
-        <span
-          className={`${actionBarItem} ${
-            product.isFavorite ? "active" : ""
-          }`}
-          role="button"
-          onClick={() => {
-              onFav(product.title);
-          }}
-        >
-          <FaStar /> <span className={actionBarItemLabel}>{!!(!!(product.isFavorite)) ? 'Remove from favorites' : 'Add to favorites'}</span>
-        </span>
-      </span>
+     <AddToFavoriteComponent product={product} onFav={onFav}/>
     </span>
   );
 };

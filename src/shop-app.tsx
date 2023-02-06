@@ -158,7 +158,7 @@ export class ShopApp extends React.Component<
                           isOpen: false,
                        });
                     }}
-                 ><FaTimes /></div>
+                 ><FaTimes data-testid="modal-close-button" /></div>
 
                  <Form
                     on-submit={this.onSubmit}

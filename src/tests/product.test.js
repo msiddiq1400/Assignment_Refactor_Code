@@ -19,7 +19,7 @@ test("on button click modal should open", () => {
   const proposalButton = screen.getByTestId("add-product-proposal");
 
   //before button is clicked, modal is not visible
-  const beforeClickedSendProposal = screen.queryByTestId(
+  let beforeClickedSendProposal = screen.queryByTestId(
     "add-product-button-text"
   );
   expect(beforeClickedSendProposal).toBeNull();
@@ -32,4 +32,14 @@ test("on button click modal should open", () => {
     "add-product-button-text"
   );
   expect(afterClickSendProposal).toHaveTextContent("Add a product");
+
+  //on modal close the text should disappear
+  const modalCloseButton = screen.queryByTestId("modal-close-button");
+
+  //modal close is clicked is clicked now
+  userEvent.click(modalCloseButton);
+
+  //modal is closed now, this text should not exist on the screen
+  beforeClickedSendProposal = screen.queryByTestId("add-product-button-text");
+  expect(beforeClickedSendProposal).toBeNull();
 });

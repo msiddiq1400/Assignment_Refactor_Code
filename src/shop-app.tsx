@@ -110,19 +110,15 @@ export class ShopApp extends React.Component<
   render() {
     const { products, isOpen } = this.state;
     return (
-      <React.Fragment>
+      <>
         <HeaderComponent />
         <div className={['container', styles.main].join(' ')} style={{paddingTop: 0}}>
           <div className={styles.buttonWrapper}>
             <span role="button">
-               <Button
-                  onClick={function (this: any) {
-                     this.setState({
-                        isOpen: true,
-                     });
-                  }.bind(this)}
-               >
-                <text>Send product proposal</text>
+               <Button onClick={() => this.setState({isOpen: true,})}>
+                <div>
+                  Send product proposal
+                </div>
                </Button>
             </span>
              {this.state.isShowingMessage && <div className={styles.messageContainer}>
@@ -161,7 +157,7 @@ export class ShopApp extends React.Component<
               </div>
            </Modal>
         </>
-      </React.Fragment>
+      </>
     );
   }
 }

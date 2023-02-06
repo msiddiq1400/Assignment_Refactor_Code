@@ -1,12 +1,10 @@
 import * as React from "react";
 import lodash from 'lodash';
-import Modal from "react-modal";
-import { FaTimes } from "react-icons/fa";
 import { Button } from "./components/button";
 import ProductList from "./components/product-list-components";
-import { Form } from "./components/form";
 import styles from "./shopApp.module.css";
 import { HeaderComponent } from "./components/header-component";
+import { AddProductModalComponent } from "./components/add-product-modal.component";
 
 export class ShopApp extends React.Component<
   {},
@@ -144,28 +142,7 @@ export class ShopApp extends React.Component<
         </div>
 
         <>
-           <Modal
-              data-testid="add-product-modal"
-              ariaHideApp={false}
-              isOpen={isOpen}
-              className={styles.reactModalContent}
-              overlayClassName={styles.reactModalOverlay}
-           >
-              <div className={styles.modalContentHelper}>
-                 <div
-                    className={styles.modalClose}
-                    onClick={() => {
-                       this.setState({
-                          isOpen: false,
-                       });
-                    }}
-                 ><FaTimes data-testid="modal-close-button" /></div>
-
-                 <Form
-                    on-submit={this.onSubmit}
-                 />
-              </div>
-           </Modal>
+           <AddProductModalComponent isOpen={isOpen} setModalClose={() => this.setState({isOpen: false})} onSubmit={this.onSubmit}/>
         </>
       </>
     );

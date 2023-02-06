@@ -3,11 +3,6 @@ import { FaStar } from "react-icons/fa";
 import styles from "./product-list-components.module.css";
 import { IProduct } from "../common/common";
 
-interface IPostsProps {
-  products: any;
-  onFav: (title: string) => void;
-}
-
 export const AddToFavoriteComponent: React.FC<{
     product: IProduct;
     onFav: (title: string) => void;

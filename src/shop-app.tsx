@@ -5,10 +5,8 @@ import { FaTimes } from "react-icons/fa";
 import { Button } from "./components/button";
 import ProductList from "./components/product-list-components";
 import { Form } from "./components/form";
-import logo from "./images/droppe-logo.png";
-import img1 from "./images/img1.png";
-import img2 from "./images/img2.png";
 import styles from "./shopApp.module.css";
+import { HeaderComponent } from "./components/header-component";
 
 export class ShopApp extends React.Component<
   {},
@@ -113,22 +111,7 @@ export class ShopApp extends React.Component<
     const { products, isOpen } = this.state;
     return (
       <React.Fragment>
-        <div className={styles.header}>
-          <div className={['container', styles.headerImageWrapper].join(' ')}>
-            <img src={logo} className={styles.headerImage} alt="logo.png"/>
-          </div>
-        </div>
-
-        <>
-           <span
-              className={['container', styles.main].join(' ')}
-              style={{margin: '50px inherit', display: 'flex', justifyContent: 'space-evenly'}}
-           >
-            <img src={img1} style={{maxHeight: "15em", display: 'block'}} alt="img1.png"/>
-            <img src={img2} style={{maxHeight: "15rem", display: 'block'}} alt="img2.png"/>
-           </span>
-        </>
-
+        <HeaderComponent />
         <div className={['container', styles.main].join(' ')} style={{paddingTop: 0}}>
           <div className={styles.buttonWrapper}>
             <span role="button">

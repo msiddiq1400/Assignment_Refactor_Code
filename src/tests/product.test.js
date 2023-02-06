@@ -17,7 +17,19 @@ test("do add product button exists", () => {
 test("on button click modal should open", () => {
   render(<ShopApp />);
   const proposalButton = screen.getByTestId("add-product-proposal");
+
+  //before button is clicked, modal is not visible
+  const beforeClickedSendProposal = screen.queryByTestId(
+    "add-product-button-text"
+  );
+  expect(beforeClickedSendProposal).toBeNull();
+
+  //button is clicked now
   userEvent.click(proposalButton);
-  const element = screen.getByTestId("add-product-button-text");
-  expect(element).toHaveTextContent("Add a product");
+
+  //now modal is visible
+  const afterClickSendProposal = screen.queryByTestId(
+    "add-product-button-text"
+  );
+  expect(afterClickSendProposal).toHaveTextContent("Add a product");
 });

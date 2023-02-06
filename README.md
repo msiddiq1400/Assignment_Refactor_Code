@@ -8,3 +8,4 @@ I will address some of the issues here that can be further done
 * I have added some test cases, but there should be a constant ratio of test cases i.e (unit test : integration test : end to end)
 * folder structure should be improved, images should be inside assets along with other data.
 * first of all, keep the code as simple as possible no need to complicate things.
+* avoid too much inline styling, use styled components

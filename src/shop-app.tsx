@@ -101,14 +101,14 @@ export class ShopApp extends React.Component<
       })
         .then(res=>res.json())
         .then(json => {
-            (function (t) {
+            (() => {
               setTimeout(()=>{
-                t.setState({
+                this.setState({
                   isShowingMessage: false,
                   message: ''
               })
             }, 2000)
-        })(this);
+        })();
       })
     } catch (err) {
       alert("some error occured")

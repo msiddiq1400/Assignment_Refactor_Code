@@ -9,7 +9,7 @@ export const HeaderComponent = () => {
         <>
             <div className={styles.header}>
                 <div className={['container', styles.headerImageWrapper].join(' ')}>
-                    <img src={logo} className={styles.headerImage} alt="logo.png"/>
+                    <img data-testid="heading-logo" itemID="heading-logo" src={logo} className={styles.headerImage} alt="logo.png"/>
                 </div>
             </div>
 

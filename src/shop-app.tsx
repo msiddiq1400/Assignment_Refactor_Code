@@ -124,7 +124,7 @@ export class ShopApp extends React.Component<
           <div className={styles.buttonWrapper}>
             <span role="button">
                <Button onClick={() => this.setState({isOpen: true,})}>
-                <div>
+                <div data-testid="add-product-button">
                   Send product proposal
                 </div>
                </Button>

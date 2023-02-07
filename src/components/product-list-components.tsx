@@ -1,5 +1,4 @@
 import * as React from "react";
-import lodash from 'lodash'
 import styles from "./product-list-components.module.css";
 import { IProduct } from "../common/common";
 import { AddToFavoriteComponent } from "./add-to-favorite-component";
@@ -9,17 +8,14 @@ interface IPostsProps {
   onFav: (title: string) => void;
 }
 
-
-export default class Posts extends React.Component<IPostsProps, {}> {
-  render(){
-    let productsarr = []
-      for (const [i, p] of this.props.products.entries()) {
-        productsarr.push(
-          <Product key={i} index={i} product={p} onFav={this.props.onFav} />
-        );
-    }
-    return <div>{lodash.reverse(productsarr)}</div>
-  }
+export const Posts: React.FC<IPostsProps> = ({products, onFav}) => {
+  return (
+    products.map((p:any, i:number) => {
+      return <div>
+        <Product key={i} index={i} product={p} onFav={onFav} />
+      </div>
+    })
+  );
 }
 
 export const Product: React.FC<{
@@ -33,11 +29,8 @@ export const Product: React.FC<{
   return (
     <span className={productClass} style={{display: 'inline-block', overflowX: 'scroll', float: 'none', clear: 'both'}}>
       <span className={styles['product-title']} style={{overflowX: 'hidden'}}>{product.title}</span>
-
       <p><strong>Rating: {product.rating ? `${product.rating.rate}/5` : ''}</strong></p>
-
       <p><b>Price: ${+product.price}</b></p>
-
       <p className={productBody}>
         <span><b>Description:</b></span>
         <br/>
@@ -47,3 +40,5 @@ export const Product: React.FC<{
     </span>
   );
 };
+
+export default Posts;

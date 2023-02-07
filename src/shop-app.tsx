@@ -67,7 +67,7 @@ export class ShopApp extends React.Component<
 
   onSubmit(payload: { title: string; description: string, price: string }) {
     const updated = lodash.clone(this.state.products);
-    updated.push({
+    updated.unshift({
       title: payload.title,
       description: payload.description,
       price: payload.price

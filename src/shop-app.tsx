@@ -1,10 +1,8 @@
 import * as React from "react";
 import lodash from 'lodash';
-import { Button } from "./components/button";
-import ProductList from "./components/product-list-components";
-import styles from "./shopApp.module.css";
 import { HeaderComponent } from "./components/header-component";
 import { AddProductModalComponent } from "./components/add-product-modal.component";
+import { ProductListComponent } from "./components/product-list/ProductListComponent";
 
 //TODO - usually i would prefer to use functional component, as the code is more readable and easily understandable
 export class ShopApp extends React.Component<
@@ -75,7 +73,7 @@ export class ShopApp extends React.Component<
 
     this.setState({
       products: updated,
-      prodCount: lodash.size(this.state.products) + 1
+      prodCount: this.state.products.length + 1
     });
 
     this.setState({
@@ -120,29 +118,15 @@ export class ShopApp extends React.Component<
     return (
       <>
         <HeaderComponent />
-        {/* can even move the below component into a seperate - TODO */}
-        <div className={['container', styles.main].join(' ')} style={{paddingTop: 0}}>
-          <div className={styles.buttonWrapper}>
-            <span role="button">
-               <Button onClick={() => this.setState({isOpen: true,})}>
-                <div data-testid="add-product-proposal">
-                  Send product proposal
-                </div>
-               </Button>
-            </span>
-             {this.state.isShowingMessage && <div className={styles.messageContainer}>
-                <i>{this.state.message}</i>
-             </div>}
-          </div>
-
-          <div className={styles.statsContainer}>
-            <span data-testid="total-products-count">Total products: {this.state.prodCount}</span>
-            {' - '}
-            <span>Number of favorites: {this.state.numFavorites}</span>
-          </div>
-
-          {products && !!products.length ? <ProductList products={products} onFav={this.favClick} /> : <div></div>}
-        </div>
+        <ProductListComponent 
+          products={products}
+          isShowingMessage={this.state.isShowingMessage}
+          favClick={this.favClick}
+          numFavorites={this.state.numFavorites}
+          prodCount={this.state.prodCount}
+          message={this.state.message}
+          openModal={() => this.setState({isOpen: true,})}
+        />
         <AddProductModalComponent isOpen={isOpen} setModalClose={() => this.setState({isOpen: false})} onSubmit={this.onSubmit}/>
       </>
     );

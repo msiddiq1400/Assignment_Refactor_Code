@@ -1,7 +1,7 @@
 import * as React from "react";
 import styles from "../../shopApp.module.css";
 import { Button } from "../button";
-import ProductList from "../product-list-components";
+import ProductList from "./ListingComponent";
 
 export const ProductListComponent: React.FC<{
     products: any;

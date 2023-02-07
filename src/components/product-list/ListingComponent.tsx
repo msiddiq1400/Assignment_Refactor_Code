@@ -1,7 +1,7 @@
 import * as React from "react";
-import styles from "./product-list-components.module.css";
-import { IProduct } from "../common/common";
-import { AddToFavoriteComponent } from "./add-to-favorite-component";
+import styles from "./ProductList.module.css";
+import { IProduct } from "../../common/common";
+import { AddToFavoriteComponent } from "./AddToFavoriteComponent";
 
 interface IPostsProps {
   products: any;

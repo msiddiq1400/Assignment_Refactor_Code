@@ -1,7 +1,7 @@
 import * as React from "react";
 import { FaStar } from "react-icons/fa";
-import styles from "./product-list-components.module.css";
-import { IProduct } from "../common/common";
+import styles from "./ProductList.module.css";
+import { IProduct } from "../../common/common";
 
 export const AddToFavoriteComponent: React.FC<{
     product: IProduct;

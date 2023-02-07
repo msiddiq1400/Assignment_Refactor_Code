@@ -3,11 +3,12 @@ import Modal from "react-modal";
 import { FaTimes } from "react-icons/fa";
 import styles from "../shopApp.module.css";
 import { Form } from "./form";
+import { ISubmit } from "../common/common";
 
 export const AddProductModalComponent: React.FC<{
     isOpen: boolean;
     setModalClose: () => void;
-    onSubmit: any;
+    onSubmit: (payload: ISubmit) => void;
 }> = ({isOpen, setModalClose, onSubmit}) => {    
     return (
         <>
@@ -19,14 +20,10 @@ export const AddProductModalComponent: React.FC<{
               overlayClassName={styles.reactModalOverlay}
             >
               <div className={styles.modalContentHelper}>
-                 <div
-                    className={styles.modalClose}
-                    onClick={setModalClose}
-                 ><FaTimes data-testid="modal-close-button" /></div>
-
-                 <Form
-                    on-submit={onSubmit}
-                 />
+                 <div className={styles.modalClose} onClick={setModalClose}>
+                  <FaTimes data-testid="modal-close-button" />
+                 </div>
+                 <Form on-submit={onSubmit}/>
               </div>
            </Modal>
         </>

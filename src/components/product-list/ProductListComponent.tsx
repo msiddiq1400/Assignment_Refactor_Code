@@ -6,7 +6,7 @@ import ProductList from "../product-list-components";
 export const ProductListComponent: React.FC<{
     products: any;
     isShowingMessage: boolean;
-    favClick: any;
+    favClick: (title: string) => void;
     numFavorites: number;
     prodCount: number;
     message: string;

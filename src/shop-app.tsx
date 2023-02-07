@@ -3,6 +3,7 @@ import lodash from 'lodash';
 import { HeaderComponent } from "./components/header-component";
 import { AddProductModalComponent } from "./components/add-product-modal.component";
 import { ProductListComponent } from "./components/product-list/ProductListComponent";
+import { ISubmit } from "./common/common";
 
 //TODO - usually i would prefer to use functional component, as the code is more readable and easily understandable
 export class ShopApp extends React.Component<
@@ -50,7 +51,7 @@ export class ShopApp extends React.Component<
     const prods = this.state.products;
     const idx = lodash.findIndex(prods, {title: title})
     let currentFavs = this.state.numFavorites
-    let totalFavs: any;
+    let totalFavs: number;
 
     if (prods[idx].isFavorite) {
       prods[idx].isFavorite = false;
@@ -63,7 +64,7 @@ export class ShopApp extends React.Component<
     this.setState(() => ({ products: prods, numFavorites: totalFavs }));
   }
 
-  onSubmit(payload: { title: string; description: string, price: string }) {
+  onSubmit(payload: ISubmit) {
     const updated = lodash.clone(this.state.products);
     updated.unshift({
       title: payload.title,

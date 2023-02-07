@@ -8,3 +8,9 @@ export interface IProduct {
         count: number
     } 
 }
+
+export interface ISubmit {
+    title: string; 
+    description: string, 
+    price: string
+}
